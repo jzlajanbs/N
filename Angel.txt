@@ -33,8 +33,6 @@ local window = library:AddWindow("CLÃ NRT", {
 
 local FarmingTab = window:AddTab("Farme")
 
-FarmingTab:AddLabel("Script feito exclusivamente para o melhor sobrinho do mundo").TextSize = 20
-
 FarmingTab:AddLabel("Farmar").TextSize = 22
 
 local autoLiftSwitch = FarmingTab:AddSwitch("Gamepass AutoLift", function(bool)
@@ -2005,7 +2003,11 @@ tabteleport:AddButton("Ilha do Ringue [Brawl]", function()
     })
 end)
 
+local infoTab = window:AddTab("Creditos")
 
+infoTab:AddLabel("Feito por Sad_OZ").TextSize = 20
 
-
-
+infoTab:AddLabel("")
+local wLabel = infoTab:AddLabel("VERSAO//1.0.0")
+wLabel.TextSize = 30
+wLabel.Font = Enum.Font.Arcade
