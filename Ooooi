@@ -2,20 +2,53 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 local whitelist = {
-    ["tauz686"] = true,
-    ["wevertonffgg"] = true,
-    ["NTM_MoNSteRBlaCk2009"] = true,
-    ["xXSantaLifeMosterXx"] = true,
-    ["1480rebirths"] = true,
-    ["LuaWorldV99"] = true
+    ["LuaWorldV99"] = true,
+    ["User2"] = true,
+    ["User3"] = true,
+    ["User4"] = true,
+    ["User5"] = true,
+    ["User6"] = true,
+    ["User7"] = true,
+    ["User8"] = true,
+    ["User9"] = true,
+    ["User10"] = true,
+    ["User11"] = true,
+    ["User12"] = true,
+    ["User13"] = true,
+    ["User14"] = true,
+    ["User15"] = true,
+    ["User16"] = true,
+    ["User17"] = true,
+    ["User18"] = true,
+    ["User19"] = true,
+    ["User20"] = true,
+    ["User21"] = true,
+    ["User22"] = true,
+    ["User23"] = true,
+    ["User24"] = true,
+    ["User25"] = true,
+    ["User26"] = true,
+    ["User27"] = true,
+    ["User28"] = true,
+    ["User29"] = true,
+    ["User30"] = true,
+    ["User31"] = true,
+    ["User32"] = true,
+    ["User33"] = true,
+    ["User34"] = true,
+    ["User35"] = true,
+    ["User36"] = true,
+    ["User37"] = true,
+    ["User38"] = true,
+    ["User39"] = true
 }
 
 if not whitelist[LocalPlayer.Name] then
-    LocalPlayer:Kick("Voce nao esta na whitelist para usar este script.")
+    LocalPlayer:Kick("Você não está na whitelist para usar este script.")
     return
 end
 
-print("Usuario autorizado:", LocalPlayer.Name)
+print("Usuário autorizado:", LocalPlayer.Name)
 
 game:GetService("Players").LocalPlayer.Idled:Connect(function()
     game:GetService("VirtualUser"):Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
@@ -1475,3 +1508,4 @@ infoTab:AddLabel("")
 local wLabel = infoTab:AddLabel("VERSAO//1.0.0")
 wLabel.TextSize = 30
 wLabel.Font = Enum.Font.Arcade
+
