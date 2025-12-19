@@ -3,7 +3,7 @@ local LocalPlayer = Players.LocalPlayer
 
 local whitelist = {
     ["LuaWorldV99"] = true,
-    ["User2"] = true,
+    ["NARUTOBRbg"] = true,
     ["User3"] = true,
     ["User4"] = true,
     ["User5"] = true,
@@ -1508,5 +1508,6 @@ infoTab:AddLabel("")
 local wLabel = infoTab:AddLabel("VERSAO//1.0.0")
 wLabel.TextSize = 30
 wLabel.Font = Enum.Font.Arcade
+
 
 
