@@ -60,7 +60,7 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/MlFrv
 
 local window = library:AddWindow("CLÃ NRT", {
     main_color = Color3.fromRGB(250, 0, 12),
-    min_size = Vector2.new(585, 550),
+    min_size = Vector2.new(570, 535),
     can_resize = false,
 })
 
@@ -1508,4 +1508,5 @@ infoTab:AddLabel("")
 local wLabel = infoTab:AddLabel("VERSAO//1.0.0")
 wLabel.TextSize = 30
 wLabel.Font = Enum.Font.Arcade
+
 
