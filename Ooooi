@@ -625,15 +625,18 @@ Killing:AddSwitch("Auto Soco [Sem Animacao]", function(state)
 	end)
 end)
 
-local rebirths = window:AddTab("Rebirth")
+local FarmingTab = window:AddTab("Rebirth")
 
-local rebirthLabel = rebirths:AddLabel("Rebirths:")
+local player = game.Players.LocalPlayer
+local rebirths = player.leaderstats:WaitForChild("Rebirths")
+
+local rebirthLabel = FarmingTab:AddLabel("Rebirths:")
 rebirthLabel.TextSize = 22
 
-local rebirthLabel = rebirths:AddLabel("Rebirths: 0")
+local rebirthLabel = FarmingTab:AddLabel("Rebirths: 0")
 rebirthLabel.TextSize = 17
 
-local targetLabel = rebirths:AddLabel("Objetivo: Nenhum")
+local targetLabel = FarmingTab:AddLabel("Objetivo: Nenhum")
 targetLabel.TextSize = 17
 
 local function formatNumber(num)
@@ -782,90 +785,7 @@ FarmingTab:AddSwitch("Farmar com o Peso", function(Value)
     end)
 end, "Auto Weight")
 
-rebirths:AddTextBox("Objetivo de Rebirth", function(text)
-    local newValue = tonumber(text)
-    if newValue and newValue > 0 then
-        targetRebirthValue = newValue
-        updateStats()
-        
-        game:GetService("StarterGui"):SetCore("SendNotification", {
-            Title = "Objetivo Actualizado",
-            Text = "Nuevo objetivo: " .. tostring(targetRebirthValue) .. " renacimientos",
-            Duration = 0
-        })
-    else
-        game:GetService("StarterGui"):SetCore("SendNotification", {
-            Title = "Size",
-            Text = "Put a size larger than 0",
-            Duration = 0
-        })
-    end
-end)
-
-local infiniteSwitch
-
-local targetSwitch = rebirths:AddSwitch("Farmar ate o Objetivo de Rebirth", function(bool)
-    _G.targetRebirthActive = bool
-    
-    if bool then
-        if _G.infiniteRebirthActive and infiniteSwitch then
-            infiniteSwitch:Set(false)
-            _G.infiniteRebirthActive = false
-        end
-        
-        spawn(function()
-            while _G.targetRebirthActive and wait(0.1) do
-                local currentRebirths = game.Players.LocalPlayer.leaderstats.Rebirths.Value
-                
-                if currentRebirths >= targetRebirthValue then
-                    targetSwitch:Set(false)
-                    _G.targetRebirthActive = false
-                    
-                    game:GetService("StarterGui"):SetCore("SendNotification", {
-                        Title = "Objetivo Alcanzado!",
-                        Text = "Has alcanzado " .. tostring(targetRebirthValue) .. " renacimientos",
-                        Duration = 5
-                    })
-                    
-                    break
-                end
-                
-                game:GetService("ReplicatedStorage").rEvents.rebirthRemote:InvokeServer("rebirthRequest")
-            end
-        end)
-    end
-end, "automatic rebirth until reaching the goal")
-
-infiniteSwitch = rebirths:AddSwitch("Farmar Rebirth Infinitamente", function(bool)
-    _G.infiniteRebirthActive = bool
-    
-    if bool then
-        if _G.targetRebirthActive and targetSwitch then
-            targetSwitch:Set(false)
-            _G.targetRebirthActive = false
-        end
-        
-        spawn(function()
-            while _G.infiniteRebirthActive and wait(0.1) do
-                game:GetService("ReplicatedStorage").rEvents.rebirthRemote:InvokeServer("rebirthRequest")
-            end
-        end)
-    end
-end, "rebirth infinitely")
-
-local sizeSwitch = rebirths:AddSwitch("Tamanho 1", function(bool)
-    _G.autoSizeActive = bool
-    
-    if bool then
-        spawn(function()
-            while _G.autoSizeActive and wait() do
-                game:GetService("ReplicatedStorage").rEvents.changeSpeedSizeRemote:InvokeServer("changeSize", 1)
-            end
-        end)
-    end
-end, "Size 1")
-
-local teleportSwitch = rebirths:AddSwitch("Teletransporte Pro Rei", function(bool)
+local teleportSwitch = FarmingTab:AddSwitch("Teletransporte Pro Rei", function(bool)
     _G.teleportActive = bool
     
     if bool then
@@ -878,49 +798,6 @@ local teleportSwitch = rebirths:AddSwitch("Teletransporte Pro Rei", function(boo
         end)
     end
 end, "Tp to Mk")
-
-rebirths:AddSwitch("Farmar com o Peso", function(Value)
-    _G.AutoWeight = Value
-    
-    if Value then
-        local weightTool = game.Players.LocalPlayer.Backpack:FindFirstChild("Weight")
-        if weightTool then
-            game.Players.LocalPlayer.Character.Humanoid:EquipTool(weightTool)
-        end
-    else
-        local character = game.Players.LocalPlayer.Character
-        local equipped = character:FindFirstChild("Weight")
-        if equipped then
-            equipped.Parent = game.Players.LocalPlayer.Backpack
-        end
-    end
-    
-    task.spawn(function()
-        while _G.AutoWeight do
-            if not _G.AutoWeight then break end
-            game:GetService("Players").LocalPlayer.muscleEvent:FireServer("rep")
-            task.wait(0.1)
-        end
-    end)
-end, "Auto Weight")
-
-local switch = rebirths:AddSwitch("Travar Personagem", function(Value)
-    if Value then
-        
-        local currentPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        getgenv().posLock = game:GetService("RunService").Heartbeat:Connect(function()
-            if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentPos
-            end
-        end)
-    else
-        
-        if getgenv().posLock then
-            getgenv().posLock:Disconnect()
-            getgenv().posLock = nil
-        end
-    end
-end)
 
 local FarmingTab = window:AddTab("Bugar")
 
@@ -1598,5 +1475,3 @@ infoTab:AddLabel("")
 local wLabel = infoTab:AddLabel("VERSAO//1.0.0")
 wLabel.TextSize = 30
 wLabel.Font = Enum.Font.Arcade
-end)
-
