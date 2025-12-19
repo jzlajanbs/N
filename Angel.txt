@@ -25,9 +25,9 @@ end)
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/MlFrvWM/BBLT81/main/BL81827TC", true))()
 
-local window = library:AddWindow("Valk's Spt", {
-    main_color = Color3.fromRGB(126, 0, 224, 0.63),
-    min_size = Vector2.new(585, 550),
+local window = library:AddWindow("CLÃ NRT", {
+    main_color = Color3.fromRGB(250, 0, 12),
+    min_size = Vector2.new(600, 630),
     can_resize = false,
 })
 
@@ -1597,5 +1597,6 @@ tabteleport:AddButton("Ilha do Ringue [Brawl]", function()
         Duration = 0
     })
 end)
+
 
 
