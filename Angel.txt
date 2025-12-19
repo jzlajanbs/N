@@ -2011,3 +2011,5 @@ infoTab:AddLabel("")
 local wLabel = infoTab:AddLabel("VERSAO//1.0.0")
 wLabel.TextSize = 30
 wLabel.Font = Enum.Font.Arcade
+
+end)
